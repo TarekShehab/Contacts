@@ -121,6 +121,10 @@ body, .app {
   cursor: pointer;
   font-size: inherit;
 }
+.showing-contacts button:hover {
+  text-decoration: underline ;
+  color: darkblue;
+}
 
 .contact-list {
   width: 100%;
