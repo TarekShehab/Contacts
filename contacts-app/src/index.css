@@ -191,7 +191,13 @@ body, .app {
   outline: none;
 }
 
+/* Tarek writes */
 .contact-remove:hover{
   background-color: black;
   border-radius: 2rem;
+}
+
+/* Tarek writes */
+.add-contact:hover{
+  border-radius: 1rem;
 }

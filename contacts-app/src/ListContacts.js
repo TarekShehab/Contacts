@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 class ListContacts extends Component {
     static propTypes = {
@@ -23,15 +24,17 @@ class ListContacts extends Component {
 
     render() {
 
-        
         const { query } = this.state
         const { contacts, onDeleteContact } = this.props
 
-        const ShowingContacts = query === '' ? contacts : contacts.filter(c => (c.name.toLowerCase().includes(query.toLocaleLowerCase()))) 
+        const ShowingContacts = (query === '') ? (contacts) : (contacts.filter(c => (c.name.toLowerCase().includes(query.toLocaleLowerCase())))) 
 
         return (
             <div className='list-contacts'>
+                
+                {/* Search bar at top */}
                 <div className='list-contacts-top'>
+                    
                     <input
                         className='search-contacts'
                         type='text'
@@ -39,10 +42,22 @@ class ListContacts extends Component {
                         value={query}
                         onChange={(event) => this.updateQuery(event.target.value)}
                     />
+
+                    {/* Create contact button */}
+                    <Link 
+                        to='/create'
+                        className='add-contact'
+                    >
+                        Add contact
+                    </Link>
+
                 </div>
 
+                         
+
                 {
-                    (ShowingContacts.length !== contacts.length) && (
+                    (ShowingContacts.length !== contacts.length) && 
+                    (
                         <div className='showing-contacts'>
                             <span> Now Showing {ShowingContacts.length} of {contacts.length}</span>
                             <button onClick={this.clearQuery}>Show all again</button>
@@ -50,6 +65,7 @@ class ListContacts extends Component {
                     )
                 }
 
+                {/* List of the contacts */}
                 <ol className='contact-list'>
                     { 
                         ShowingContacts.map(contact => (
